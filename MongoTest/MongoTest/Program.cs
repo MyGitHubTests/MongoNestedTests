@@ -24,24 +24,31 @@ namespace MongoTest
             var count = queryable.Count();
             Console.WriteLine("Queryable {0} count: {1}", queryable, count);
 
-            // Working example
-            var cars = queryable.Select(a => a.Cars);
+            Console.WriteLine("");
 
-            foreach (IList<Car> car in cars)
+            // Case A
+            // Work as expected  
+            var cars = queryable.SelectMany(a => a.Cars);
+
+            foreach (Car car in cars)
             {
-                Console.WriteLine("car.Count {0}", car.Count);
+                Console.WriteLine("Car Engine Type {0}, Displacement {1}", car.Engine.Type, car.Engine.Displacement);
             }
 
-            // Working example
+            Console.WriteLine("");
+
+            // Case B1
+            // Work as expected 
             var qry = queryable.Select(a => a.Cars.Select(b => b.Engine));
 
-            foreach (IList<Engine> engines in qry)
+            foreach (IEnumerable<Engine> engines in qry)
                 foreach (Engine engine in engines)
                 {
                     Console.WriteLine("Engine Type {0}, Displacement {1}", engine.Type, engine.Displacement);
                 }
 
-            // Working example
+            // Case B2          
+            // Work as expected 
             var result = from a in queryable
                          from b in a.Cars
                          select b.Engine;
@@ -51,34 +58,60 @@ namespace MongoTest
                 Console.WriteLine("Engine Type {0}, Displacement {1}", engine.Type, engine.Displacement);
             }
 
-            // Working example
-            // Note: it's not clear why I have to use List here instead of IList as above
+            // Case C1          
+            // Work as expected 
             var drivers = queryable.Select(a => a.Cars.Select(b => b.Drivers));
 
-            foreach (List<List<Driver>> listA in drivers)
-                foreach (List<Driver> listB in listA)
+            foreach (IEnumerable<IEnumerable<Driver>> listA in drivers)
+                foreach (IEnumerable<Driver> listB in listA)
                     foreach (Driver driver in listB)
                     {
                         Console.WriteLine("Driver Name: {0}, {1}", driver.Name.First, driver.Name.Last);
                     }
 
-            // 'System.NotSupportedException' : {"$project or $group does not support {document}."}
-            //var resultDriver = from a in queryable
-            //             from b in a.Cars
-            //             from c in b.Drivers
-            //             select c;
-            //foreach (Driver driver in resultDriver)
-            //{
-            //    Console.WriteLine("Driver Name: {0}, {1}", driver.Name.First, driver.Name.Last);
-            //}
 
-            // Working example
-            // Note: it's not clear why I have to use IEnumerable here instead of List as above
+            // Case C2          
+            // Raises exception 'System.NotSupportedException' : {"$project or $group does not support {document}."}
+            var resultDriver = from a in queryable
+                               from b in a.Cars
+                               from c in b.Drivers
+                               select c;
+
+            try
+            {
+                foreach (Driver driver in resultDriver)
+                {
+                    Console.WriteLine("Driver Name: {0}, {1}", driver.Name.First, driver.Name.Last);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Case C2 - failed : {0}", ex.Message);
+            }
+
+            // Case C3 - using SelectMany
+            // Exception {"Unable to determine the serialization information for the collection selector in the tree: aggregate([]).SelectMany(a => a.Cars.SelectMany(b => b.Drivers))"}
+            var driversC3 = queryable.SelectMany(a => a.Cars.SelectMany(b => b.Drivers));
+
+            try
+            {
+                foreach (var x in driversC3)
+                {
+                    Console.WriteLine("x: {0}", x);
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Case C3 - failed : {0}", ex.Message);
+            }
+
+            // Case D
+            // Works as expected
             var cargoList = queryable.Select(a => a.Cars.Select(b => b.Trips.Select(c => c.Cargo)));
 
-            foreach (List<IEnumerable<List<Cargo>>> listA in cargoList)
-                foreach (IEnumerable<List<Cargo>> listB in listA)
-                    foreach (List<Cargo> listC in listB)
+            foreach (IEnumerable<IEnumerable<IEnumerable<Cargo>>> listA in cargoList)
+                foreach (IEnumerable<IEnumerable<Cargo>> listB in listA)
+                    foreach (IEnumerable<Cargo> listC in listB)
                         foreach (Cargo cargo in listC)
                         {
                             Console.WriteLine("Cargo Name: {0}, Height: {1}", cargo.Info.Name, cargo.Size.Height);
