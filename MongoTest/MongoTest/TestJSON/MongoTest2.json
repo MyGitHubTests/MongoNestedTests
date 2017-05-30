@@ -1,0 +1,106 @@
+{
+  "Cars": [
+    {
+      "Engine": { "Type": "I4", "Displacement": 2.0 },
+      "Body": { "Style": "Coupe", "Color": "Silver" },
+      "Drivers": [
+        {
+          "Name": { "First": "Mike", "Last": "McDonale" },
+          "Address": { "Street": "First Line", "City": "Small Town" },
+          "Contact": { "Phone": "(888) 111-2222", "Email": "mike@email.me" }
+        }
+      ],
+      "Trips": [
+        {
+	  "Note" : "Trip AA",
+          "Mileage": { "Start": 1, "End": 2 },
+          "Period": { "Start": "2017-01-01T00:00:00", "End": "2017-01-02T00:00:00" },
+          "Cargo": [
+            {
+              "Size": { "Height": 100, "Wight": 200, "Lenght": 300 },
+              "Info": { "Weight": 400, "Name": "Cargo Name AA-1"}
+            },
+            {
+              "Size": { "Height": 300, "Wight": 400, "Lenght": 500 },
+              "Info": { "Weight": 600, "Name": "Cargo Name AA-11"}
+            }
+      	  ]
+	},
+        {
+	  "Note" : "Trip BB",
+          "Mileage": { "Start": 3, "End": 4 },
+          "Period": { "Start": "2017-02-01T00:00:00", "End": "2017-02-02T00:00:00" },
+          "Cargo": [
+            {
+              "Size": { "Height": -1, "Wight": -2, "Lenght": -3 },
+              "Info": { "Weight": -4, "Name": "Cargo Name BB-2"}
+            },
+            {
+              "Size": { "Height": -5, "Wight": -6, "Lenght": -7 },
+              "Info": { "Weight": -8, "Name": "Cargo Name BB-22"}
+            }
+      	  ]
+	}
+      ]
+    },
+    {
+      "Engine": { "Type": "V10", "Displacement": 5.5 },
+      "Body": { "Style": "SUV", "Color": "Black" },
+      "Drivers": [
+        {
+          "Name": { "First": "Todd", "Last": "Black" },
+          "Address": { "Street": "Second Street", "City": "Dallas" },
+          "Contact": { "Phone": "(123) 456-7890", "Email": "todd@email.me" }
+        },
+        {
+          "Name": { "First": "Trevor", "Last": "White" },
+          "Address": { "Street": "Third Line", "City": "Phaldelphia" },
+          "Contact": { "Phone": "(321) 909-8008", "Email": "trevor@email.me" }
+        }
+      ],
+      "Trips": [
+        {
+	  "Note" : "Trip C",
+          "Mileage": { "Start": .1, "End": .2 },
+          "Period": { "Start": "2017-03-01T00:00:00", "End": "2017-03-02T00:00:00" },
+          "Cargo": [
+            {
+              "Size": { "Height": 10, "Wight": 20, "Lenght": 30 },
+              "Info": { "Weight": 40, "Name": "Cargo Name C1"}
+            },
+            {
+              "Size": { "Height": 50, "Wight": 60, "Lenght": 70 },
+              "Info": { "Weight": 60, "Name": "Cargo Name C2"}
+            },
+            {
+              "Size": { "Height": 70, "Wight": 90, "Lenght": 100 },
+              "Info": { "Weight": 110, "Name": "Cargo Name C2"}
+            }
+      	  ]
+	},
+        {
+	  "Note" : "Trip D",
+          "Mileage": { "Start": .3, "End": .4 },
+          "Period": { "Start": "2017-04-01T00:00:00", "End": "2017-04-02T00:00:00" },
+          "Cargo": [
+            {
+              "Size": { "Height": .1, "Wight": .2, "Lenght": .3 },
+              "Info": { "Weight": .4, "Name": "Cargo Name D1"}
+            }
+      	  ]
+	},
+        {
+	  "Note" : "Trip E",
+          "Mileage": { "Start": 33.33, "End": 44.44 },
+          "Period": { "Start": "2017-05-01T00:00:00", "End": "2017-05-02T00:00:00" },
+          "Cargo": [
+            {
+              "Size": { "Height": .11, "Wight": .22, "Lenght": .33 },
+              "Info": { "Weight": .44, "Name": "Cargo Name E1"}
+            }
+      	  ]
+	}
+      ]
+    }
+  ]
+}

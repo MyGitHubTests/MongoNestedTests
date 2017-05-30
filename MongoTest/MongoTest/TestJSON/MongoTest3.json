@@ -1,0 +1,36 @@
+{
+  "Cars": [
+    {
+      "Engine": { "Type": "V8", "Displacement": 4.8 },
+      "Body": { "Style": "Targa", "Color": "White" },
+      "Drivers": [
+        {
+          "Name": { "First": "Bob", "Last": "Fast" },
+          "Address": { "Street": "Top Ct", "City": "Seattle" },
+          "Contact": { "Phone": "(000) 000-0000", "Email": "bob@email.me" }
+        }
+      ],
+      "Trips": [
+        {
+	  "Note" : "Trip F",
+          "Mileage": { "Start": 1000, "End": 2000 },
+          "Period": { "Start": "2017-12-01T00:00:00", "End": "2017-12-02T00:00:00" },
+          "Cargo": [
+            {
+              "Size": { "Height": 100, "Wight": 200, "Lenght": 300 },
+              "Info": { "Weight": 400, "Name": "Cargo Name F1"}
+            },
+            {
+              "Size": { "Height": 500, "Wight": 600, "Lenght": 700 },
+              "Info": { "Weight": 800, "Name": "Cargo Name F2"}
+            },
+            {
+              "Size": { "Height": 900, "Wight": 1000, "Lenght": 1100 },
+              "Info": { "Weight": 1200, "Name": "Cargo Name F3"}
+            }
+      	  ]
+	}
+      ]
+    }
+  ]
+}

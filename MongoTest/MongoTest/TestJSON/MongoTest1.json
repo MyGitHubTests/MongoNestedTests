@@ -1,0 +1,52 @@
+{
+  "Cars": [
+    {
+      "Engine": { "Type": "V6", "Displacement": 3.0 },
+      "Body": { "Style": "Sedan", "Color": "Blue" },
+      "Drivers": [
+        {
+          "Name": { "First": "John", "Last": "Doe" },
+          "Address": { "Street": "Main Street", "City": "Big City" },
+          "Contact": { "Phone": "(123) 456-7890", "Email": "john.doe@email.me" }
+        },
+        {
+          "Name": { "First": "Rober", "Last": "Plant" },
+          "Address": { "Street": "City Plaza", "City": "Los Angeles" },
+          "Contact": { "Phone": "(777) 666-5555", "Email": "robert@email.me" }
+        }
+      ],
+      "Trips": [
+        {
+	  "Note" : "Trip A",
+          "Mileage": { "Start": 111.11, "End": 222.22 },
+          "Period": { "Start": "2017-01-01T00:00:00", "End": "2017-01-02T00:00:00" },
+          "Cargo": [
+            {
+              "Size": { "Height": 1.1, "Wight": 2.2, "Lenght": 3.3 },
+              "Info": { "Weight": 4.4, "Name": "Cargo Name 1"}
+            },
+            {
+              "Size": { "Height": 11.11, "Wight": 22.22, "Lenght": 33.33 },
+              "Info": { "Weight": 44.44, "Name": "Cargo Name 11"}
+            }
+      	  ]
+	},
+        {
+	  "Note" : "Trip B",
+          "Mileage": { "Start": 222.22, "End": 333.33 },
+          "Period": { "Start": "2017-01-01T00:00:00", "End": "2017-01-02T00:00:00" },
+          "Cargo": [
+            {
+              "Size": { "Height": 11.11, "Wight": 22.22, "Lenght": 33.33 },
+              "Info": { "Weight": 44.44, "Name": "Cargo Name 2"}
+            },
+            {
+              "Size": { "Height": 55.5, "Wight": 66.6, "Lenght": 77.7 },
+              "Info": { "Weight": 88.8, "Name": "Cargo Name 22"}
+            }
+      	  ]
+	}
+      ]
+    }
+  ]
+}
