@@ -26,6 +26,7 @@ namespace MongoTest
 
             Console.WriteLine("");
 
+            Console.WriteLine("Case A");
             // Case A
             // Work as expected  
             var cars = queryable.SelectMany(a => a.Cars);
@@ -37,6 +38,7 @@ namespace MongoTest
 
             Console.WriteLine("");
 
+            Console.WriteLine("Case B1");
             // Case B1
             // Work as expected 
             var qry = queryable.Select(a => a.Cars.Select(b => b.Engine));
@@ -47,6 +49,7 @@ namespace MongoTest
                     Console.WriteLine("Engine Type {0}, Displacement {1}", engine.Type, engine.Displacement);
                 }
 
+            Console.WriteLine("Case B2");
             // Case B2          
             // Work as expected 
             var result = from a in queryable
@@ -58,6 +61,7 @@ namespace MongoTest
                 Console.WriteLine("Engine Type {0}, Displacement {1}", engine.Type, engine.Displacement);
             }
 
+            Console.WriteLine("Case C1");
             // Case C1          
             // Work as expected 
             var drivers = queryable.Select(a => a.Cars.Select(b => b.Drivers));
@@ -70,6 +74,7 @@ namespace MongoTest
                     }
 
 
+            Console.WriteLine("Case C2");
             // Case C2          
             // Raises exception 'System.NotSupportedException' : {"$project or $group does not support {document}."}
             var resultDriver = from a in queryable
@@ -89,6 +94,7 @@ namespace MongoTest
                 Console.WriteLine("Case C2 - failed : {0}", ex.Message);
             }
 
+            Console.WriteLine("Case C3");
             // Case C3 - using SelectMany
             // Exception {"Unable to determine the serialization information for the collection selector in the tree: aggregate([]).SelectMany(a => a.Cars.SelectMany(b => b.Drivers))"}
             var driversC3 = queryable.SelectMany(a => a.Cars.SelectMany(b => b.Drivers));
@@ -100,11 +106,12 @@ namespace MongoTest
                     Console.WriteLine("x: {0}", x);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("Case C3 - failed : {0}", ex.Message);
             }
 
+            Console.WriteLine("Case D");
             // Case D
             // Works as expected
             var cargoList = queryable.Select(a => a.Cars.Select(b => b.Trips.Select(c => c.Cargo)));
@@ -116,6 +123,48 @@ namespace MongoTest
                         {
                             Console.WriteLine("Cargo Name: {0}, Height: {1}", cargo.Info.Name, cargo.Size.Height);
                         }
+
+            Console.WriteLine("Case E");
+            // Case E
+            // Works as expected
+            var onlyBigEngines = queryable.Select(a => a.Cars.Where(b => b.Engine.Displacement > 4));
+
+            foreach (IEnumerable<Car> listA in onlyBigEngines)
+                foreach (Car car in listA)
+                {
+                    Console.WriteLine("car: {0}", car.Engine.Displacement);
+                }
+
+            Console.WriteLine("Case F1");
+            // Case F1
+            // Works as expected
+            var caseF1 = queryable.Select(a => a.Cars.Where(b => b.Trips.Any(c => c.Cargo.Any(d => d.Info.Name.IndexOf("F3") > -1))));
+
+
+            foreach (IEnumerable<Car> listA in caseF1)
+                foreach (Car car in listA)
+                {
+                    Console.WriteLine("car: {0}", car.Engine.Displacement);
+                }
+
+            Console.WriteLine("Case F2");
+            // Case F2
+            // Exception "Contains of type System.String is not supported in the expression tree {document}{$d.Info}{Name}.Contains(\"F3\")."
+            var caseF2 = queryable.Select(a => a.Cars.Where(b => b.Trips.Any(c => c.Cargo.Any(d => d.Info.Name.Contains("F3")))));
+
+            try
+            {
+                foreach (IEnumerable<Car> listA in caseF2)
+                    foreach (Car car in listA)
+                    {
+                        Console.WriteLine("car: {0}", car.Engine.Displacement);
+                    }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Case F2 - failed : {0}", ex.Message);
+            }
+
 
             Console.ReadLine();
         }
