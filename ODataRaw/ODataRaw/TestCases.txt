@@ -1,0 +1,23 @@
+﻿Service document
+
+http://localhost:53740/
+
+Service metadata
+
+http://localhost:53740/$metadata
+
+Get People
+
+http://localhost:53740/People
+
+Queries
+
+http://localhost:53740/People?$filter=contains(Description,'Lorem')
+
+http://localhost:53740/People?$select=Name
+
+http://localhost:53740/People?$expand=Trips
+
+Sub-query with count and Expand
+
+http://localhost:53740/People?$filter=Trips/any(t:t/Name%20eq%20%27Trip%202%27)&$expand=Trips&$count=true
