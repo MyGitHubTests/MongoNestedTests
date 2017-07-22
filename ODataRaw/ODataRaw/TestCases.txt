@@ -1,6 +1,10 @@
-﻿Service document
+﻿Basics
 
 http://localhost:53740/
+
+http://localhost:53740/People?$count=true
+
+http://localhost:53740/People?$top=1&$skip=1
 
 Service metadata
 

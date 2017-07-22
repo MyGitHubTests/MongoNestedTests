@@ -21,8 +21,9 @@ namespace ODataRaw
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
             builder.Namespace = "Demos";
             builder.ContainerName = "DefaultContainer";
-            builder.EntitySet<Person>("People");
-            builder.EntitySet<Trip>("Trips");
+            builder.EntitySet<Person>("Mongo");
+            builder.EntitySet<Person>("Static");
+            //builder.EntitySet<Trip>("Trips");
             var edmModel = builder.GetEdmModel();
             return edmModel;
         }

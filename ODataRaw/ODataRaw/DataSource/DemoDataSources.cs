@@ -58,20 +58,20 @@ namespace ODataRaw.DataSource
             {
                 new Person()
                 {
-                    ID = "001",
+                    _id = "001",
                     Name = "Angel",
                     Trips = new List<Trip>{Trips[0], Trips[1]}
                 },
                 new Person()
                 {
-                    ID = "002",
+                    _id = "002",
                     Name = "Clyde",
                     Description = "Contrary to popular belief, Lorem Ipsum is not simply random text.",
                     Trips = new List<Trip>{Trips[2], Trips[3]}
                 },
                 new Person()
                 {
-                    ID = "003",
+                    _id = "003",
                     Name = "Elaine",
                     Description = "It has roots in a piece of classical Latin literature from 45 BC, making Lorems over 2000 years old."
                 }
