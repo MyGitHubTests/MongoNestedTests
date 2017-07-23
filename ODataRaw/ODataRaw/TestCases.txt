@@ -6,6 +6,10 @@ http://localhost:53740/People?$count=true
 
 http://localhost:53740/People?$top=1&$skip=1
 
+http://localhost:53740/Static?$count=true&$orderby=Name
+
+http://localhost:53740/Static?$count=true&$filter=Name%20eq%20%27Clyde%27
+
 Service metadata
 
 http://localhost:53740/$metadata

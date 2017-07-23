@@ -8,6 +8,7 @@ using System.Web.OData;
 
 namespace ODataRaw.Controllers
 {
+    //[EnableQuery(PageSize = 1)]
     [EnableQuery]
     public class StaticController : ODataController
     {

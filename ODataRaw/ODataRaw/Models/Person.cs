@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.OData.Builder;
 
 namespace ODataRaw.Models
 {
@@ -17,6 +18,7 @@ namespace ODataRaw.Models
         [Required]
         public String Name { get; set; }
         public String Description { get; set; }
+        //[AutoExpand]
         public List<Trip> Trips { get; set; }
     }
 }
