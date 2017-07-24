@@ -1,9 +1,7 @@
 ﻿using MongoDB.Driver;
 using MongoDB.Driver.Linq;
-using ODataRaw.DataSource;
 using ODataRaw.Models;
 using System.Linq;
-using System.Web.Http;
 using System.Web.OData;
 
 namespace ODataRaw.Controllers
@@ -12,16 +10,6 @@ namespace ODataRaw.Controllers
     [EnableQuery]
     public class MongoController : ODataController
     {
-        //public IQueryable<Person> Get()
-        //{
-        //    return DemoDataSources.Instance.People.AsQueryable();
-        //}
-
-        //public IHttpActionResult Get()
-        //{
-        //    return Ok(DemoDataSources.Instance.People.AsQueryable());
-        //}
-
         public IQueryable<Person> Get()
         {
             IMongoDatabase db = (new MongoClient()).GetDatabase("demo");
