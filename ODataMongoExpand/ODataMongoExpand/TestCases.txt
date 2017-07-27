@@ -1,0 +1,80 @@
+﻿Service metadata
+
+http://localhost:54110/$metadata
+
+Basics - work with MongoDB .NET 2.4.4.0 driver using collection.AsQueryable<T>()
+
+http://localhost:54110/
+
+http://localhost:54110/Mongo
+
+http://localhost:54110/Mongo?$count=true
+
+http://localhost:54110/Mongo?$top=1&$skip=1
+
+http://localhost:54110/Mongo?$count=true&$orderby=Name
+
+http://localhost:54110/Mongo?$count=true&$filter=Name%20eq%20%27Clyde%27
+
+Advanced/ expand - DO NOT work with MongoDB .NET 2.4.4.0 driver using collection.AsQueryable<T>()
+
+http://localhost:54110/Mongo?$select=Name
+
+http://localhost:54110/Mongo?$expand=Trips
+
+http://localhost:54110/Mongo?$filter=contains(Description,'Lorem')
+
+http://localhost:54110/Mongo?$filter=Trips/any(t:t/Name%20eq%20%27Trip%202%27)&$expand=Trips&$count=true
+
+Advanced/ expand - data from MongoDB pulled into List<T> and retruned as List<T>.AsQueryable();
+
+http://localhost:54110/Static?$select=Name
+
+http://localhost:54110/Static?$expand=Trips
+
+http://localhost:54110/Static?$filter=contains(Description,'Lorem')
+
+http://localhost:54110/Static?$filter=Trips/any(t:t/Name%20eq%20%27Trip%202%27)&$expand=Trips&$count=true
+
+Test JSON example:
+/* 1 */
+{
+    "_id" : "001",
+    "Name" : "Angel",
+    "Description" : null,
+    "Trips" : [ 
+        {
+            "ID" : "0",
+            "Name" : "Trip 0"
+        }, 
+        {
+            "ID" : "1",
+            "Name" : "Trip 1"
+        }
+    ]
+}
+
+/* 2 */
+{
+    "_id" : "003",
+    "Name" : "Elaine",
+    "Description" : "It has roots in a piece of classical Latin literature from 45 BC, making Lorems over 2000 years old.",
+    "Trips" : null
+}
+
+/* 3 */
+{
+    "_id" : "002",
+    "Name" : "Clyde",
+    "Description" : "Contrary to popular belief, Lorem Ipsum is not simply random text.",
+    "Trips" : [ 
+        {
+            "ID" : "3",
+            "Name" : "Trip 3"
+        }, 
+        {
+            "ID" : "4",
+            "Name" : "Trip 4"
+        }
+    ]
+}
